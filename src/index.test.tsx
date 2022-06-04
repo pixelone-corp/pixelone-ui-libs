@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import { PixelButton } from '.'
 
-describe('ExampleComponent', () => {
+describe('PixelButton', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(PixelButton).toBeTruthy()
   })
 })
