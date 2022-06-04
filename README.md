@@ -1,13 +1,13 @@
-# pixelone-lib-ui
+# pixelone-ui-libs
 
 > Common UI components for pixelone.app
 
-[![NPM](https://img.shields.io/npm/v/pixelone-lib-ui.svg)](https://www.npmjs.com/package/pixelone-lib-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/pixelone-ui-libs.svg)](https://www.npmjs.com/package/pixelone-ui-libs) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save pixelone-lib-ui
+npm install --save pixelone-ui-libs
 ```
 
 ## Usage
@@ -15,8 +15,8 @@ npm install --save pixelone-lib-ui
 ```tsx
 import React, { Component } from 'react'
 
-import MyComponent from 'pixelone-lib-ui'
-import 'pixelone-lib-ui/dist/index.css'
+import MyComponent from 'pixelone-ui-libs'
+import 'pixelone-ui-libs/dist/index.css'
 
 class Example extends Component {
   render() {
