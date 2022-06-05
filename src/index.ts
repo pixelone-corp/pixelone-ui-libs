@@ -25,3 +25,12 @@ export * from "./lib/styleGuide";
 
 
 export * from "./lib/common-styled-component";
+
+export const getAddressByType = (type: string, arr) => {
+  return arr.filter(
+    (item) => item.address_type.toLowerCase() === type.toLowerCase()
+  );
+};
+export const getAddressByID = (id: number, arr) => {
+  return arr.find((item) => item.address_id === id);
+};
