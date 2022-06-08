@@ -12,6 +12,7 @@ export interface cardProps {
   className?: string;
   error?: string;
   footerAlignment?: any;
+  children?: any;
 }
 
 const PixelcardContainer = styled(Card)`

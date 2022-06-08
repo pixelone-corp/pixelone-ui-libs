@@ -28,6 +28,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   endDate?: any;
   labelKey?: any;
   noPadding?: boolean;
+  children?: any;
 }
 
 const variantClasses = {

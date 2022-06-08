@@ -1,8 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 export interface TopBarProps {
-  className: string;
+  className: string
+  children: any
 }
 
 const StyledPixelTopBar = styled.div`
@@ -19,11 +20,11 @@ const StyledPixelTopBar = styled.div`
   align-items: center;
   padding: 0 20px;
   border-bottom: 1px solid #e6e6e6;
-`;
+`
 
 export const PixelTopBar = React.forwardRef<HTMLDivElement, TopBarProps>(
   ({ className, children, ...rest }, ref) => {
-    return <StyledPixelTopBar>{children}</StyledPixelTopBar>;
+    return <StyledPixelTopBar>{children}</StyledPixelTopBar>
   }
-);
-export default PixelTopBar;
+)
+export default PixelTopBar

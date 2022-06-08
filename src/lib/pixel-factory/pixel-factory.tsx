@@ -18,7 +18,7 @@ interface IContextProps {
 
 export const PixelFactoryContext = React.createContext({} as IContextProps);
 
-export default React.memo(({ children }) => {
+export default React.memo(({ children }:any) => {
   React.useEffect(() => {
     Block.init({
       querySelectorLimit: 200,

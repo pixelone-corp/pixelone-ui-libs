@@ -13,6 +13,7 @@ export interface PixelButtonProps
   margin?: string;
   padding?: string;
   tooltip?: string;
+  children?: React.ReactNode;
 }
 
 const StyledPixelButton = styled(Button)`
