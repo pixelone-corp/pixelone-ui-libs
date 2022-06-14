@@ -77,6 +77,6 @@ const PixelTagStyled = styled.div`
 `
 
 const StyledBadge = styled(Badge)<{color?: any}>`
-  ${({ color }) => color && css`background-color: ${color}`}
+  ${({ color }) => color && css`background-color: ${color} !important`}
 `
 export default PixelTag
