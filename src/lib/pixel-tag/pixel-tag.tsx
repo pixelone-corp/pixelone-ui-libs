@@ -17,7 +17,7 @@ export interface TagProps extends React.HTMLProps<HTMLDivElement> {
 
 const tagColors = {
   "non monetory": "#9e9e9e",
-  mew: "#4caf50",
+  new: "#4caf50",
   processing: "#009688",
   tracking: "#00bcd4",
   returns: "#f44336",
