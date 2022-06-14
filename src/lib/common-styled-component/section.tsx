@@ -29,7 +29,7 @@ const SectionContent = styled.div<{ noPadding?: boolean }>`
   background: #fff;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-  min-height: 50px;
+  min-height: 25px;
   &.fullheight {
     min-height: 100%;
     height: 100%;
