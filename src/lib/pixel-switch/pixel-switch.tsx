@@ -7,9 +7,10 @@ import cross from './assets/cross.svg'
 import disablecross from './assets/disableCross.svg'
 
 export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
-  className?: string
-  label?: string
-  name: string
+  className?: string,
+  label?: string,
+  name: string,
+  endLabel?: string,
 }
 
 const StyledPixelSwitch = styled.div`
@@ -150,7 +151,7 @@ const StyledLabel = styled.span`
 `
 
 export const PixelSwitch = React.forwardRef<HTMLInputElement, SwitchProps>(
-  ({ className, label, disabled = false, ...rest }, ref) => {
+  ({ className, label,endLabel = false, disabled = false, ...rest }, ref) => {
     const id = `check_${Math.random()}`
     return (
       <StyledPixelSwitch
@@ -162,6 +163,7 @@ export const PixelSwitch = React.forwardRef<HTMLInputElement, SwitchProps>(
           className={`${className} ${disabled === true && 'disablee'}`}
           htmlFor={id}
         ></label>
+        {endLabel &&  <StyledLabel>{endLabel}</StyledLabel>}
       </StyledPixelSwitch>
     )
   }
