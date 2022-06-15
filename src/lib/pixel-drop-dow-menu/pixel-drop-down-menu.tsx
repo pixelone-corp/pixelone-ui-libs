@@ -99,7 +99,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
     },
     ref
   ) => {
-    const [show, setShow] = React.useState(false);
+    const [show, setShow] = React.useState<any>(false);
     const showDropdown = (e) => {
       setShow(!show);
     };
