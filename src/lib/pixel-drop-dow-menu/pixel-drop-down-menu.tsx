@@ -18,6 +18,8 @@ interface OptionsData {
   label: string;
   disabled?: boolean;
   clickHandler: any;
+  children?: OptionsData[];
+  formatter?: any;
 }
 const StyledPixelButton = styled(Dropdown.Toggle)`
   &:focus {
@@ -97,6 +99,13 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
     },
     ref
   ) => {
+    const [show, setShow] = React.useState(false);
+    const showDropdown = (e) => {
+      setShow(!show);
+    };
+    const hideDropdown = (e) => {
+      setShow(false);
+    };
     return (
       <StyledPixelDropDownMenu>
         <Dropdown>
@@ -116,8 +125,33 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
               <Dropdown.Item
                 disabled={data.disabled}
                 onClick={data.clickHandler}
+                onMouseEnter={() => setShow(data.label)}
+                onMouseLeave={() => setShow(false)}
               >
-                {data.label}
+                {data.children ? "" : data.label}
+                {data.children && (
+                  <StyledSubDropdown show={show === data.label}>
+                    <StyledPixelButton
+                      aria-pressed={active}
+                      variant={variant}
+                      className={className}
+                      disabled={data.disabled}
+                      {...rest}
+                    >
+                      {data.formatter ? data.formatter(data) : data.label}
+                    </StyledPixelButton>
+                    <Dropdown.Menu>
+                      {data.children?.map((data) => (
+                        <Dropdown.Item
+                          disabled={data.disabled}
+                          onClick={data.clickHandler}
+                        >
+                          {data.formatter ? data.formatter(data) : data.label}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </StyledSubDropdown>
+                )}
               </Dropdown.Item>
             ))}
           </Dropdown.Menu>
@@ -126,4 +160,22 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
     );
   }
 );
+
+const StyledSubDropdown = styled(Dropdown)`
+  width: 200px;
+  .dropdown-toggle {
+    width: 100%;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: flex-start;
+    // align-items: flex-start;
+    text-align: left;
+    &::after {
+      display: none;
+    }
+  }
+  .dropdown-menu {
+    transform: translateX(80%) !important;
+  }
+`;
 export default PixelDropDownMenu;

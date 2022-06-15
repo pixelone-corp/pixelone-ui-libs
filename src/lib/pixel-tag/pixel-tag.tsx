@@ -46,7 +46,22 @@ const tagColors = {
   product: "#ff4081",
   shipped: "#ef6c00",
   "ready to ship": "#448aff",
-  packaging: "#2e7d32", 
+  packaging: "#2e7d32",
+  canceled: "#f44336",
+  failed: "#f44336",
+  outofstock: "#f44336",
+  "followup-ip": "#f44336",
+  "on-hold": "#f44336",
+  onlinepayment: "#4caf50",
+  prepaid: "#4caf50",
+  pending: "#ff9800",
+  ready_to_ship: "#448aff",
+  confirmed: "#4caf50",
+  detain: "#f44336",
+  "ready-to-ship": "#448aff",
+  "in-transit": "#00bcd4",
+  completed: "#2196f3",
+
 };
 
 const getColor = (children) => {
@@ -78,6 +93,6 @@ const PixelTagStyled = styled.div`
 `
 
 const StyledBadge = styled(Badge)<{color?: any}>`
-  ${({ color }) => color && css`background-color: ${color} !important`}
+  ${({ color }) => color && css`background-color: ${color || "#2e7d32"} !important`}
 `
 export default PixelTag
