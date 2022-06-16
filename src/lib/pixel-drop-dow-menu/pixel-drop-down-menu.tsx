@@ -1,7 +1,8 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
 import styled, { css } from "styled-components";
-import { $primaryColor, $secondaryColor, PixelTag } from "../styleGuide";
+import { $primaryColor, $secondaryColor } from "../styleGuide";
+import {PixelTag} from '../pixel-tag/pixel-tag';
 export interface MenuProps {
   className?: string;
   variant?: "outline" | "primary" | "secondary" | "link" | "tag" | string;
