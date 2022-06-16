@@ -1,7 +1,7 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
 import styled, { css } from "styled-components";
-import { $primaryColor, $secondaryColor, PixelTag } from "pixelone-ui-libs";
+import { $primaryColor, $secondaryColor, PixelTag } from "../styleGuide";
 export interface MenuProps {
   className?: string;
   variant?: "outline" | "primary" | "secondary" | "link" | "tag" | string;
