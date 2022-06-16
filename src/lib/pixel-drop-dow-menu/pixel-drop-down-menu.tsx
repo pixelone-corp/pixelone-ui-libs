@@ -1,10 +1,10 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
 import styled, { css } from "styled-components";
-import { $primaryColor, $secondaryColor } from "../styleGuide";
+import { $primaryColor, $secondaryColor, PixelTag } from "pixelone-ui-libs";
 export interface MenuProps {
   className?: string;
-  variant?: "outline" | "primary" | "secondary" | "link" | string;
+  variant?: "outline" | "primary" | "secondary" | "link" | "tag" | string;
   size?: "lg" | "sm";
   active?: boolean;
   disabled?: boolean;
@@ -21,6 +21,7 @@ interface OptionsData {
   children?: OptionsData[];
   formatter?: any;
 }
+const StyledInnerLine = styled(Dropdown.Toggle)``;
 const StyledPixelButton = styled(Dropdown.Toggle)`
   &:focus {
     outline: none !important;
@@ -55,7 +56,6 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
         border-color: ${$secondaryColor} !important;
       }
     `}
-
     ${(props: MenuProps) =>
     props.variant === "link" &&
     css`
@@ -80,6 +80,13 @@ const StyledPixelButton = styled(Dropdown.Toggle)`
     css`
       background-color: ${$secondaryColor} !important;
       border-color: ${$secondaryColor} !important;
+    `}
+    ${(props: MenuProps) =>
+    props.variant === "tag" &&
+    css`
+      &::after {
+        display: none;
+      }
     `}
 `;
 const StyledPixelDropDownMenu = styled.div``;
@@ -118,7 +125,11 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
             margin={margin}
             {...rest}
           >
-            {toggleText}
+            {variant === "tag" ? (
+              <PixelTag>{toggleText}</PixelTag>
+            ) : (
+              <>{toggleText}</>
+            )}
           </StyledPixelButton>
           <Dropdown.Menu>
             {options?.map((data) => (
@@ -131,7 +142,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                 {data.children ? "" : data.label}
                 {data.children && (
                   <StyledSubDropdown show={show === data.label}>
-                    <StyledPixelButton
+                    <StyledInnerLine
                       aria-pressed={active}
                       variant={variant}
                       className={className}
@@ -139,7 +150,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
                       {...rest}
                     >
                       {data.formatter ? data.formatter(data) : data.label}
-                    </StyledPixelButton>
+                    </StyledInnerLine>
                     <Dropdown.Menu>
                       {data.children?.map((data) => (
                         <Dropdown.Item
