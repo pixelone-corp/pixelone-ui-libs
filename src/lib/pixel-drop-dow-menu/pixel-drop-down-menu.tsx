@@ -2,7 +2,7 @@ import React from "react";
 import { Dropdown } from "react-bootstrap";
 import styled, { css } from "styled-components";
 import { $primaryColor, $secondaryColor } from "../styleGuide";
-import {PixelTag} from '../pixel-tag/pixel-tag';
+import { PixelTag } from "../pixel-tag/pixel-tag";
 export interface MenuProps {
   className?: string;
   variant?: "outline" | "primary" | "secondary" | "link" | "tag" | string;
@@ -129,7 +129,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
             {variant === "tag" ? (
               <PixelTag>{toggleText}</PixelTag>
             ) : (
-              <>{toggleText}</>
+              { toggleText }
             )}
           </StyledPixelButton>
           <Dropdown.Menu>
