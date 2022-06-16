@@ -9,14 +9,8 @@ export interface PixelDateprops {
 const Date = styled.span`
   color: #000000;
   font-weight: 400;
-  font-size: 22px;
+  font-size: inherit;
   line-height: 100%;
-  &.textMedium {
-    font-size: 18px;
-  }
-  &.textSmall {
-    font-size: 14px;
-  }
 `;
 const StyledPixelDate = styled.div``;
 
