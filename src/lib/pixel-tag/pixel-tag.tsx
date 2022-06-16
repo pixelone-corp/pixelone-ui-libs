@@ -1,18 +1,18 @@
-import React from 'react'
-import { Badge } from 'react-bootstrap'
-import styled, {css} from 'styled-components'
+import React from "react";
+import { Badge } from "react-bootstrap";
+import styled, { css } from "styled-components";
 
 export interface TagProps extends React.HTMLProps<HTMLDivElement> {
-  className:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'light'
-    | 'dark'
-  textColor: string
+  className?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "danger"
+    | "warning"
+    | "info"
+    | "light"
+    | "dark";
+  textColor?: string;
 }
 
 const tagColors = {
@@ -61,16 +61,15 @@ const tagColors = {
   "ready-to-ship": "#448aff",
   "in-transit": "#00bcd4",
   completed: "#2196f3",
-
 };
 
 const getColor = (children) => {
-  if(typeof children === 'string') {
-    return tagColors[children.toLowerCase()] || false
+  if (typeof children === "string") {
+    return tagColors[children.toLowerCase()] || false;
   }
-}
+};
 export const PixelTag = React.forwardRef<HTMLDivElement, TagProps>(
-  ({ className = 'Primary', textColor = 'white', children, ...rest }, ref) => {
+  ({ className = "Primary", textColor = "white", children, ...rest }, ref) => {
     return (
       <PixelTagStyled>
         <StyledBadge
@@ -83,16 +82,20 @@ export const PixelTag = React.forwardRef<HTMLDivElement, TagProps>(
           {children}
         </StyledBadge>
       </PixelTagStyled>
-    )
+    );
   }
-)
+);
 const PixelTagStyled = styled.div`
   .primary {
     padding: 3px 6px !important;
   }
-`
+`;
 
-const StyledBadge = styled(Badge)<{color?: any}>`
-  ${({ color }) => color && css`background-color: ${color || "#2e7d32"} !important`}
-`
-export default PixelTag
+const StyledBadge = styled(Badge)<{ color?: any }>`
+  ${({ color }) =>
+    color &&
+    css`
+      background-color: ${color || "#2e7d32"} !important;
+    `}
+`;
+export default PixelTag;
