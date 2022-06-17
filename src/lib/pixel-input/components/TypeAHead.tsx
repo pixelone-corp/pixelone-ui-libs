@@ -6,7 +6,7 @@ const TypeAHead = (props) => {
   const { handleSearch, isLoading, data, labelKey } = props
   const filterBy = () => true
   const [options, setOptions] = React.useState(data)
-  const ref = React.useRef()
+  const ref: any = React.useRef()
 
   React.useEffect(() => {
     console.log(data)
@@ -27,7 +27,9 @@ const TypeAHead = (props) => {
       renderMenuItemChildren={props.formatter}
       onChange={(d) => {
         props.onChange(d)
-        ref.current.clear()
+        if (ref && ref.current) {
+          ref?.current?.clear()
+        }
       }}
     />
   )
