@@ -30,8 +30,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "exactOptionalPropertyTypes": false,
-    "noPropertyAccessFromIndexSignature": false,
-    "checkJs": false
+    "noPropertyAccessFromIndexSignature": true,
+    "checkJs": false,
   },
   "include": [
     "src"
