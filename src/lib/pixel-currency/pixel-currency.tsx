@@ -5,6 +5,7 @@ export interface CurrencyProps {
   className: string;
   value: any;
   currency?: string;
+  hideSymbol?: boolean;
 }
 
 const StyledPixelCurrency = styled.span`
@@ -23,13 +24,16 @@ const formatCurrency = (value: any, currency?: string) => {
 };
 
 export const PixelCurrency = React.forwardRef<HTMLDivElement, CurrencyProps>(
-  ({ className, value, currency, ...rest }, ref) => {
+  ({ className, value, currency, hideSymbol = false, ...rest }, ref) => {
     const tenant_info: any = JSON.parse(
       localStorage.getItem("tenant_info") || "{}"
     );
     return (
       <StyledPixelCurrency ref={ref} {...rest}>
-        {formatCurrency(value, tenant_info?.default_currency || "PKR")}
+        {formatCurrency(
+          value,
+          hideSymbol ? "" : tenant_info?.default_currency || "PKR"
+        )}
       </StyledPixelCurrency>
     );
   }
