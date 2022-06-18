@@ -114,7 +114,6 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
     const hideDropdown = (e) => {
       setShow(false);
     };
-    console.log(toggleText, "toggleText");
     return (
       <StyledPixelDropDownMenu>
         <Dropdown>
