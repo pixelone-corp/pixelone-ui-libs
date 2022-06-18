@@ -114,6 +114,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
     const hideDropdown = (e) => {
       setShow(false);
     };
+    console.log(toggleText, "toggleText");
     return (
       <StyledPixelDropDownMenu>
         <Dropdown>
@@ -129,7 +130,7 @@ export const PixelDropDownMenu = React.forwardRef<HTMLDivElement, MenuProps>(
             {variant === "tag" ? (
               <PixelTag>{toggleText}</PixelTag>
             ) : (
-              { toggleText }
+              <React.Fragment>{toggleText}</React.Fragment>
             )}
           </StyledPixelButton>
           <Dropdown.Menu>
