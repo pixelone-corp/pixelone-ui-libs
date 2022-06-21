@@ -61,6 +61,9 @@ const tagColors = {
   "ready-to-ship": "#448aff",
   "in-transit": "#00bcd4",
   completed: "#2196f3",
+  partial_paid: "#4caf50",
+  unpaid: "#f44336",
+  paid: "#4caf50",
 };
 
 const getColor = (children) => {
