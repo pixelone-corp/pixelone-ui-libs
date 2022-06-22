@@ -11,7 +11,7 @@ export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
   name: string
   endLabel?: string
-  size?: 'sm'
+  size?: any
 }
 
 const StyledPixelSwitch = styled.div`
