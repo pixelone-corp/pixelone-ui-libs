@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { $primaryColor } from '../styleGuide'
 import check from './assets/check.svg'
 import disablecheck from './assets/disableCheck.svg'
@@ -7,13 +7,20 @@ import cross from './assets/cross.svg'
 import disablecross from './assets/disableCross.svg'
 
 export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
-  className?: string,
-  label?: string,
-  name: string,
-  endLabel?: string,
+  className?: string
+  label?: string
+  name: string
+  endLabel?: string
+  size?: 'sm'
 }
 
 const StyledPixelSwitch = styled.div`
+  ${(props: SwitchProps) =>
+    props.size === 'sm' &&
+    css`
+      padding: 5px;
+      border-radius: 5px;
+    `}
   padding: 10px;
   border-radius: 12px;
   display: flex;
@@ -151,10 +158,14 @@ const StyledLabel = styled.span`
 `
 
 export const PixelSwitch = React.forwardRef<HTMLInputElement, SwitchProps>(
-  ({ className, label,endLabel = false, disabled = false, ...rest }, ref) => {
+  (
+    { className, label, endLabel = false, disabled = false, size, ...rest },
+    ref
+  ) => {
     const id = `check_${Math.random()}`
     return (
       <StyledPixelSwitch
+        size={size}
         className={`${className} ${disabled === true && 'disable'}`}
       >
         <StyledLabel>{label}</StyledLabel>
@@ -163,7 +174,7 @@ export const PixelSwitch = React.forwardRef<HTMLInputElement, SwitchProps>(
           className={`${className} ${disabled === true && 'disablee'}`}
           htmlFor={id}
         ></label>
-        {endLabel &&  <StyledLabel>{endLabel}</StyledLabel>}
+        {endLabel && <StyledLabel>{endLabel}</StyledLabel>}
       </StyledPixelSwitch>
     )
   }
