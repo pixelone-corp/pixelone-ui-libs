@@ -18,8 +18,8 @@ const StyledPixelSwitch = styled.div`
   ${(props: SwitchProps) =>
     props.size === 'sm' &&
     css`
-      padding: 5px;
-      border-radius: 5px;
+      padding: 5px !important;
+      border-radius: 5px !important;
     `}
   padding: 10px;
   border-radius: 12px;
