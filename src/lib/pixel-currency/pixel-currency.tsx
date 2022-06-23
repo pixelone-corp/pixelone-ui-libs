@@ -1,41 +1,44 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 export interface CurrencyProps {
-  className: string;
-  value: any;
-  currency?: string;
-  hideSymbol?: boolean;
+  className: string
+  value: any
+  currency?: string
+  hideSymbol?: boolean
 }
 
 const StyledPixelCurrency = styled.span`
   font-size: inherit;
-`;
+`
 
 const formatCurrency = (value: any, currency?: string) => {
   if (value === undefined || value === null) {
-    return "--";
+    return '--'
   }
-  var formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: currency,
-  });
-  return formatter.format(value);
-};
+  if (currency === '') {
+    return value
+  }
+  var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency
+  })
+  return formatter.format(value)
+}
 
 export const PixelCurrency = React.forwardRef<HTMLDivElement, CurrencyProps>(
   ({ className, value, currency, hideSymbol = false, ...rest }, ref) => {
     const tenant_info: any = JSON.parse(
-      localStorage.getItem("tenant_info") || "{}"
-    );
+      localStorage.getItem('tenant_info') || '{}'
+    )
     return (
       <StyledPixelCurrency ref={ref} {...rest}>
         {formatCurrency(
           value,
-          hideSymbol ? "" : tenant_info?.default_currency || "PKR"
+          hideSymbol ? '' : tenant_info?.default_currency || 'PKR'
         )}
       </StyledPixelCurrency>
-    );
+    )
   }
-);
-export default PixelCurrency;
+)
+export default PixelCurrency
