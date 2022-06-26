@@ -8,7 +8,7 @@ export interface PixelDateprops {
   size?: string
 }
 const Date = styled.span`
-  font-size: ${(props: PixelDateprops) => props.size && props.size};
+  font-size: ${(props: PixelDateprops) => props.size && props.size} !important;
   color: #000000;
   font-weight: 400;
 
