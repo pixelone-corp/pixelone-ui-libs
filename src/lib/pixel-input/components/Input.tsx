@@ -1,7 +1,7 @@
-import React from "react";
-import { FormControl } from "react-bootstrap";
-import { $secondaryWithAlpha } from "../../styleGuide";
-import styled, { css } from "styled-components";
+import React from 'react'
+import { FormControl } from 'react-bootstrap'
+import { $secondaryWithAlpha } from '../../styleGuide'
+import styled, { css } from 'styled-components'
 
 const Input = (props) => {
   return (
@@ -21,16 +21,17 @@ const Input = (props) => {
         {...props.rest}
       />
     </React.Fragment>
-  );
-};
+  )
+}
 const StyledPixelInput = styled(FormControl)`
+  background-color: #f7f7f7;
   ${(props) =>
     props.height &&
     css`
       height: ${props.height};
     `}
   &:focus {
-    box-shadow: 0 0 0 0.25rem ${$secondaryWithAlpha("0.15")} !important;
+    box-shadow: 0 0 0 0.25rem ${$secondaryWithAlpha('0.15')} !important;
   }
-`;
-export default Input;
+`
+export default Input
