@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import moment from 'moment'
 export interface PixelDateprops {
   className: string
@@ -8,7 +8,11 @@ export interface PixelDateprops {
   size?: string
 }
 const Date = styled.span`
-  font-size: ${(props: PixelDateprops) => props.size && props.size} !important;
+  ${(props: PixelDateprops) =>
+    props.size &&
+    css`
+      font-size: ${props.size} !important;
+    `}
   color: #000000;
   font-weight: 400;
 
@@ -20,7 +24,7 @@ export const PixelDate = React.forwardRef<HTMLDivElement, PixelDateprops>(
   ({ className, value, format, size, ...rest }, ref) => {
     return (
       <StyledPixelDate>
-        <Date className={className}>
+        <Date className={className} size={size}>
           {moment(value).format(
             format === 'pixelStandard'
               ? 'll'
