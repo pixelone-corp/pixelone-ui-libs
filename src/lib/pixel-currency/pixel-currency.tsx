@@ -31,14 +31,17 @@ export const PixelCurrency = React.forwardRef<HTMLDivElement, CurrencyProps>(
     return (
       <StyledPixelCurrency ref={ref} {...rest}>
         {!hideSymbol ? (
-          <> {formatCurrency(value, tenant_info?.default_currency || 'PKR')}</>
+          <React.Fragment>
+            {' '}
+            {formatCurrency(value, tenant_info?.default_currency || 'PKR')}
+          </React.Fragment>
         ) : (
-          <>
+          <React.Fragment>
             {formatCurrency(
               value,
               tenant_info?.default_currency || 'PKR'
             ).replace(tenant_info?.default_currency || 'PKR', '')}
-          </>
+          </React.Fragment>
         )}
       </StyledPixelCurrency>
     )
