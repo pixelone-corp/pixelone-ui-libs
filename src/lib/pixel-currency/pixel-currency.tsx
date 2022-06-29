@@ -16,9 +16,6 @@ const formatCurrency = (value: any, currency?: string) => {
   if (value === undefined || value === null) {
     return '--'
   }
-  if (currency === '') {
-    return value
-  }
   var formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: currency
@@ -33,9 +30,15 @@ export const PixelCurrency = React.forwardRef<HTMLDivElement, CurrencyProps>(
     )
     return (
       <StyledPixelCurrency ref={ref} {...rest}>
-        {formatCurrency(
-          value,
-          hideSymbol ? '' : tenant_info?.default_currency || 'PKR'
+        {!hideSymbol ? (
+          <> {formatCurrency(value, tenant_info?.default_currency || 'PKR')}</>
+        ) : (
+          <>
+            {formatCurrency(
+              value,
+              tenant_info?.default_currency || 'PKR'
+            ).replace(tenant_info?.default_currency || 'PKR', '')}
+          </>
         )}
       </StyledPixelCurrency>
     )
