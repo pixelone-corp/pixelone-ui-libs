@@ -2,13 +2,14 @@ import React, { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
-export interface DropDownProps extends InputHTMLAttributes<HTMLSelectElement> {
+export interface DropDownProps extends InputHTMLAttributes<HTMLDivElement> {
   className?: string
   options?: OptionsData[]
   error?: 'string'
   isgrouped?: boolean
   groupOptionData?: any
   selectlabel?: string
+  onChange: any
 }
 interface OptionsData {
   value: string
@@ -54,7 +55,7 @@ const filterGroupedData = (options, filterText) => {
   }
   return options
 }
-export const PixelDropDown = React.forwardRef<HTMLSelectElement, DropDownProps>(
+export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
   (
     {
       className,
