@@ -1,30 +1,31 @@
-import React, { InputHTMLAttributes } from "react";
-import { FormSelect } from "react-bootstrap";
-import styled from "styled-components";
-import { $secondaryWithAlpha } from "../styleGuide";
+import React, { InputHTMLAttributes } from 'react'
+import { FormSelect } from 'react-bootstrap'
+import styled from 'styled-components'
+import { $secondaryWithAlpha } from '../styleGuide'
 export interface DropDownProps extends InputHTMLAttributes<HTMLSelectElement> {
-  className?: string;
-  options?: OptionsData[];
-  error?: "string";
-  isgrouped?: boolean;
-  groupOptionData?: any;
-  selectlabel?: string;
+  className?: string
+  options?: OptionsData[]
+  error?: 'string'
+  isgrouped?: boolean
+
+  groupOptionData?: any
+  selectlabel?: string
 }
 interface OptionsData {
-  value: string;
-  label: string;
-  disabled?: boolean;
+  value: string
+  label: string
+  disabled?: boolean
 }
 
 const InputError = styled.span`
   font-size: 90%;
   color: rgb(255 0 0 / 64%);
-`;
+`
 const StyledPixelSwitch = styled(FormSelect)`
   &:focus {
-    box-shadow: 0 0 0 0.25rem ${$secondaryWithAlpha("0.15")} !important;
+    box-shadow: 0 0 0 0.25rem ${$secondaryWithAlpha('0.15')} !important;
   }
-`;
+`
 export const PixelDropDown = React.forwardRef<HTMLSelectElement, DropDownProps>(
   (
     {
@@ -33,22 +34,22 @@ export const PixelDropDown = React.forwardRef<HTMLSelectElement, DropDownProps>(
       error,
       groupOptionData = {},
       isgrouped = false,
-      selectlabel = "Please select",
+      selectlabel = 'Please select',
       ...rest
     },
     ref
   ) => {
     return (
-      <DropDown className="abc">
+      <DropDown className='abc'>
         <StyledPixelSwitch
-          aria-invalid={error ? "true" : "false"}
+          aria-invalid={error ? 'true' : 'false'}
           className={className}
           ref={ref}
           {...rest}
         >
           {isgrouped ? (
             <React.Fragment>
-              <Option value="">{selectlabel}</Option>
+              <Option value=''>{selectlabel}</Option>
               {Object.keys(groupOptionData).map((key) => {
                 return (
                   <OptGroup label={key}>
@@ -61,10 +62,10 @@ export const PixelDropDown = React.forwardRef<HTMLSelectElement, DropDownProps>(
                         >
                           {option.label}
                         </Option>
-                      );
+                      )
                     })}
                   </OptGroup>
-                );
+                )
               })}
             </React.Fragment>
           ) : (
@@ -78,16 +79,16 @@ export const PixelDropDown = React.forwardRef<HTMLSelectElement, DropDownProps>(
                   >
                     {option.label}
                   </option>
-                );
+                )
               })}
             </React.Fragment>
           )}
         </StyledPixelSwitch>
         {error && <InputError>{error}</InputError>}
       </DropDown>
-    );
+    )
   }
-);
+)
 
 const DropDown = styled.div`
   position: relative;
@@ -97,7 +98,7 @@ const DropDown = styled.div`
   &:last-child {
     margin-bottom: 0;
   }
-`;
+`
 const Option = styled.option`
   background-color: #ffffff;
   height: 40px;
@@ -105,9 +106,9 @@ const Option = styled.option`
   &:hover {
     background-color: #f5f5f5;
   }
-`;
+`
 const OptGroup = styled.optgroup`
   background-color: #f9f9f9;
-`;
+`
 
-export default PixelDropDown;
+export default PixelDropDown
