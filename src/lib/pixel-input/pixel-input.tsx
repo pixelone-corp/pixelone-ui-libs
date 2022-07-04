@@ -265,7 +265,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
                 ref={ref}
                 labelKey={labelKey}
                 className={cn(
-                  'px-4 flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
+                  'flex items-center w-full appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0',
                   shadow && 'focus:shadow',
                   variantClasses[variant],
                   sizeClasses[dimension],
