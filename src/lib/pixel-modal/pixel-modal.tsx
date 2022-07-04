@@ -63,12 +63,7 @@ const StyledLabel = styled.span`
   color: #171717;
   margin-right: 5px;
 `
-const ModalBody = styled(Modal.Body)`
-  & > * {
-    overflow-x: visible !important;
-    overflow-y: visible !important;
-  }
-`
+
 export const PixelModal = React.forwardRef<ModalProps>(
   (
     {
@@ -103,5 +98,10 @@ export const PixelModal = React.forwardRef<ModalProps>(
     )
   }
 )
-
+const ModalBody = styled(Modal.Body)`
+  & > * {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+`
 export default PixelModal
