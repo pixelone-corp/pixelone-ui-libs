@@ -23,9 +23,11 @@ const TypeAHead = (props) => {
       labelKey={labelKey || 'first_name'}
       isLoading={isLoading}
       onSearch={handleSearch}
+      defaultInputValue={props.value}
       options={options}
       placeholder={props.placeholder}
       renderMenuItemChildren={props.formatter}
+      invalid={props.invalid}
       onChange={(d) => {
         props.onChange(d)
         if (ref && ref.current) {

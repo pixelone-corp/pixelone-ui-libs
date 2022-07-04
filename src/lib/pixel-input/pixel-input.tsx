@@ -1,7 +1,7 @@
 import { DateRangeInput } from '@datepicker-react/styled'
 import cn from 'classnames'
 import React, { InputHTMLAttributes } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { $secondaryWithAlpha } from '../styleGuide'
 import Datepicker from './components/Datepicker'
 import Input from './components/Input'
@@ -29,6 +29,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   labelKey?: any
   noPadding?: boolean
   children?: any
+  invalid?: boolean
 }
 
 const variantClasses = {
@@ -48,6 +49,13 @@ const PixelInputContainer = styled.div`
       overflow: visible !important;
       & > * {
         overflow: visible !important;
+        input {
+          ${(props: Props) =>
+            props.invalid === true &&
+            css`
+              color: red !important;
+            `}
+        }
       }
     }
   }
@@ -139,6 +147,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       endDate,
       labelKey,
       noPadding = false,
+      invalid = false,
       ...rest
     },
     ref
@@ -150,7 +159,11 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
       rest['as'] = as
     }
     return (
-      <PixelInputContainer className={className} style={parentStyle}>
+      <PixelInputContainer
+        invalid={invalid}
+        className={'overFlowCustom'}
+        style={parentStyle}
+      >
         {label && (
           <label
             htmlFor={name}
@@ -263,6 +276,7 @@ export const PixelInput = React.forwardRef<HTMLInputElement, Props>(
                 value={value}
                 spellCheck='false'
                 onChange={onChange}
+                invalid={invalid}
                 aria-invalid={error ? 'true' : 'false'}
                 {...rest}
               />
