@@ -1,8 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import PixelDropDown from './PixelDropDown'
-import { faDiagnoses } from '@fortawesome/free-solid-svg-icons'
+import PixelDropDown from './pixel-select-drop-down'
 
 export default {
   title: 'Pixel Select Dropdown',
