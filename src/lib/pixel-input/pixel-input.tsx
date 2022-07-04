@@ -48,7 +48,7 @@ const PixelInputContainer = styled.div`
     & > * {
       overflow: visible !important;
       & > * {
-        overflow: visible !important;
+        /* overflow: visible !important; */
         input {
           ${(props: Props) =>
             props.invalid === true &&
