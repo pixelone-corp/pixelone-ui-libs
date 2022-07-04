@@ -23,7 +23,8 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o docs-build -s ./stories/assets"
+
   },
   "peerDependencies": {
     "@datepicker-react/styled": "^2.8.4",
