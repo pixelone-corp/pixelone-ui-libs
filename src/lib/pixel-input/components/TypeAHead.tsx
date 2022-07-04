@@ -3,7 +3,7 @@ import { AsyncTypeahead } from 'react-bootstrap-typeahead'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 
 const TypeAHead = (props) => {
-  const { handleSearch, isLoading, data, labelKey } = props
+  const { handleSearch, isLoading, data, labelKey, ...rest } = props
   const filterBy = () => true
   const [options, setOptions] = React.useState(data)
   const ref: any = React.useRef()
@@ -16,6 +16,7 @@ const TypeAHead = (props) => {
 
   return (
     <AsyncTypeahead
+      style={{ overflow: 'visible' }}
       filterBy={filterBy}
       id='async-example'
       ref={ref}
@@ -31,6 +32,7 @@ const TypeAHead = (props) => {
           ref?.current?.clear()
         }
       }}
+      {...rest}
     />
   )
 }
