@@ -31,9 +31,11 @@ const getValue = (options, value, isgrouped) => {
   const filteredValue = isgrouped
     ? getGroupedValue(options, value)
     : options.find((option) => option.value == value)
+  // console.log(options, value, isgrouped)
   return filteredValue ? filteredValue.label : ''
 }
-// filter data based on filter text in simple and grouped dropdown
+
+// for search from single options
 const filterData = (options, filterText) => {
   if (filterText) {
     return options.filter((option) =>
@@ -42,8 +44,7 @@ const filterData = (options, filterText) => {
   }
   return options
 }
-
-// filter data based on filter text in grouped dropdown
+// for search from grouped options
 const filterGroupedData = (options, filterText) => {
   if (filterText) {
     return Object.keys(options).reduce((acc, group) => {
@@ -65,7 +66,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       isgrouped = false,
       selectlabel = 'Please select',
       value = '',
-      onChange,
+
       ...rest
     },
     ref
@@ -77,6 +78,8 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(!isOptionsOpen)
       handleMouseMove()
     }
+    console.log(rest)
+
     const toggleRef = React.useRef(null)
     const handleMouseMove = () => {
       //  change tooltip.current position only if it's out of the screen document.body
@@ -99,7 +102,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       return () => {
         window.removeEventListener('scroll', handleMouseMove)
       }
-    }, [])
+    })
 
     const groupData = filterGroupedData(groupOptionData, filterText)
     return (
@@ -136,8 +139,8 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                           return (
                             <Option
                               onClick={() => {
-                                onChange &&
-                                  onChange({
+                                rest.onChange &&
+                                  rest.onChange({
                                     target: { value: option.value }
                                   })
                                 setIsOptionsOpen(false)
@@ -178,8 +181,8 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                         value={option.value}
                         disabled={option.disabled}
                         onClick={() => {
-                          onChange &&
-                            onChange({ target: { value: option.value } })
+                          rest.onChange &&
+                            rest.onChange({ target: { value: option.value } })
                           setIsOptionsOpen(false)
                         }}
                       >
@@ -233,6 +236,7 @@ const Option = styled.option`
   background-color: #ffffff;
   height: 40px;
   padding: 5px 5px 5px 25px;
+  max-width: 100% !important;
   cursor: pointer;
   &:hover {
     background-color: #f0f4fa;

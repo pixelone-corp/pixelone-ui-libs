@@ -16,7 +16,12 @@ const Template: ComponentStory<typeof PixelDropDown> = (args) => {
   const onChangeHandler = (e) => {
     setValue(e.target.value)
   }
-  return <PixelDropDown value={value} onChange={onChangeHandler} {...args} />
+  args.onChange = onChangeHandler
+  return (
+    <React.Fragment>
+      <PixelDropDown value={value} {...args} />
+    </React.Fragment>
+  )
 }
 export const Simple = Template.bind({})
 Simple.args = {
