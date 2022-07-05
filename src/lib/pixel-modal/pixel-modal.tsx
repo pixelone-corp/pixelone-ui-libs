@@ -1,5 +1,5 @@
 import React, { Children, InputHTMLAttributes } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { $primaryColor } from '../styleGuide'
 import { PixelButton } from '../pixel-button/pixel-button'
 import { Modal } from 'react-bootstrap'
@@ -22,6 +22,7 @@ export interface ModalProps {
   handleClose?: any
   show?: any
   children?: any
+  overFlow?: boolean
 }
 
 const StyledModal = styled(Modal)<{ size: ModalCustomSize }>`
@@ -75,6 +76,7 @@ export const PixelModal = React.forwardRef<ModalProps>(
       show,
       children,
       size = {},
+      overFlow = false,
       ...rest
     }: ModalProps,
     ref
@@ -92,16 +94,20 @@ export const PixelModal = React.forwardRef<ModalProps>(
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
-        <ModalBody>{children}</ModalBody>
+        <ModalBody overFlow={overFlow}>{children}</ModalBody>
         {footer && <Modal.Footer>{footer}</Modal.Footer>}
       </StyledModal>
     )
   }
 )
 const ModalBody = styled(Modal.Body)`
-  & > * {
-    overflow-x: visible !important;
-    overflow-y: visible !important;
-  }
+  ${(props) =>
+    props.overflow === true &&
+    css`
+      & > * {
+        overflow-x: visible !important;
+        overflow-y: visible !important;
+      }
+    `}
 `
 export default PixelModal
