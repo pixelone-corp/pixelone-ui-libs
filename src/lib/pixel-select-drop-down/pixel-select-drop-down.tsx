@@ -200,7 +200,7 @@ const Toggler = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.75rem;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 `
@@ -245,12 +245,11 @@ const Option = styled.option`
 const OptGroup = styled.optgroup`
   width: 100%;
   border-top: 1px solid #ced4da;
-  // border-bottom: 1px solid #ced4da;
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.75rem;
 `
 const SearchPixelInput = styled.div`
-  padding: 0.5rem 1rem;
-  box-sizeing: border-box;
+  padding: 0.375rem 0.75rem;
+  box-sizing: border-box;
   position: absolute;
   width: 100%;
   top: 0;
@@ -260,12 +259,12 @@ const Search = styled.input`
   background-color: #ffffff; !important;
   width: 100%;
   border: 1px solid #ced4da;
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.75rem;
   border-radius: 0.25rem;
   box-sizeing: border-box;
-  
+
   &:focus, &:active, &:focus-visible {
-   
+
     outline: none;
   }
 `
