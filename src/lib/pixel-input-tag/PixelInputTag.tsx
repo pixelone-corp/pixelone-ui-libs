@@ -7,7 +7,7 @@ import { ActionIcon } from '../common-styled-component'
 export interface InputTagProps {
   className?: string
   tags?: options[]
-  onTagUpdate?: (tag: options) => void
+  onTagUpdate?: any
   options?: options[]
   placeholder?: string
 
@@ -65,7 +65,6 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
       onTagUpdate = [],
       options = [],
       placeholder,
-      isDropList = true,
       allowCustomTags = true,
       ...rest
     },
@@ -151,7 +150,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
             }}
           >
             {localTags.length > 0 && (
-              <>
+              <React.Fragment>
                 {localTags?.map((tag, i) => {
                   return (
                     <Tags key={i}>
@@ -168,7 +167,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
                     </Tags>
                   )
                 })}
-              </>
+              </React.Fragment>
             )}
 
             <TagInput
