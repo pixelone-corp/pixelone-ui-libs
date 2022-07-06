@@ -105,8 +105,29 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     })
 
     const groupData = filterGroupedData(groupOptionData, filterText)
+
+    const handleClickOutside = (e: any) => {
+      if (toggleRef?.current?.contains(e.target)) {
+        return
+      }
+      setIsOptionsOpen(false)
+    }
+    React.useEffect(() => {
+      document.addEventListener('click', handleClickOutside)
+      return () => {
+        document.removeEventListener('click', handleClickOutside)
+      }
+    }, [])
+
     return (
-      <DropDown ref={toggleRef} {...rest} className={className}>
+      <DropDown
+        ref={toggleRef}
+        {...rest}
+        className={className}
+        handleClickOutside={() => {
+          setIsOptionsOpen(false)
+        }}
+      >
         <Toggler onClick={toggleOptions}>
           <OptionLabel>
             {getValue(
