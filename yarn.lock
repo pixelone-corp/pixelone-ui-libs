@@ -10588,6 +10588,11 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+rechat-react-click-outside@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/rechat-react-click-outside/-/rechat-react-click-outside-1.1.1.tgz#72dea98b4e22cbe1f0cec98ce03537766b1872b1"
+  integrity sha512-ZlZ0b9s2BYUdX/Ztdl/464WdMlRnOC5Li9144T6tqv4uyCqTjtdpU6+o5/N/I6sQtErvyLyTOvT1wTdbKo+84g==
+
 redent@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/redent/-/redent-1.0.0.tgz#cf916ab1fd5f1f16dfb20822dd6ec7f730c2afde"
