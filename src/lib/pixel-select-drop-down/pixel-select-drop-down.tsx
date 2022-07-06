@@ -31,7 +31,7 @@ const getValue = (options, value, isgrouped) => {
   const filteredValue = isgrouped
     ? getGroupedValue(options, value)
     : options.find((option) => option.value == value)
-  // console.log(options, value, isgrouped)
+
   return filteredValue ? filteredValue.label : ''
 }
 
@@ -81,20 +81,25 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     console.log(rest)
 
     const toggleRef = React.useRef(null)
+
+    const groupData = filterGroupedData(groupOptionData, filterText)
+
+    const handleClickOutside = (e: any) => {
+      if (toggleRef?.current?.contains(e.target)) {
+        return
+      }
+      setIsOptionsOpen(false)
+    }
+    React.useEffect(() => {
+      document.addEventListener('click', handleClickOutside)
+      return () => {
+        document.removeEventListener('click', handleClickOutside)
+      }
+    }, [])
+
     const handleMouseMove = () => {
-      //  change tooltip.current position only if it's out of the screen document.body
       if (toggleRef?.current) {
         setPosition(toggleRef?.current.getBoundingClientRect())
-        // const tooltipRect = toggleRef?.current.getBoundingClientRect()
-        // const bodyRect =
-        //   toggleRef?.current.parentElement.getBoundingClientRect()
-
-        // if (tooltipRect.top < bodyRect.top) {
-        //   setPosition('bottom')
-        // }
-        // if (tooltipRect.bottom > bodyRect.bottom) {
-        //   setPosition('top')
-        // }
       }
     }
     React.useEffect(() => {
@@ -102,11 +107,28 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       return () => {
         window.removeEventListener('scroll', handleMouseMove)
       }
-    })
+    }, [])
 
-    const groupData = filterGroupedData(groupOptionData, filterText)
+    React.useEffect(() => {
+      window.addEventListener('scroll', () => {
+        setIsOptionsOpen(false)
+      })
+      return () => {
+        window.removeEventListener('scroll', () => {
+          setIsOptionsOpen(false)
+        })
+      }
+    }, [])
+
     return (
-      <DropDown ref={toggleRef} {...rest} className={className}>
+      <DropDown
+        ref={toggleRef}
+        {...rest}
+        className={className}
+        handleClickOutside={() => {
+          setIsOptionsOpen(false)
+        }}
+      >
         <Toggler onClick={toggleOptions}>
           <OptionLabel>
             {getValue(
