@@ -31,7 +31,7 @@ const getValue = (options, value, isgrouped) => {
   const filteredValue = isgrouped
     ? getGroupedValue(options, value)
     : options.find((option) => option.value == value)
-  // console.log(options, value, isgrouped)
+
   return filteredValue ? filteredValue.label : ''
 }
 
@@ -81,28 +81,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     console.log(rest)
 
     const toggleRef = React.useRef(null)
-    const handleMouseMove = () => {
-      //  change tooltip.current position only if it's out of the screen document.body
-      if (toggleRef?.current) {
-        setPosition(toggleRef?.current.getBoundingClientRect())
-        // const tooltipRect = toggleRef?.current.getBoundingClientRect()
-        // const bodyRect =
-        //   toggleRef?.current.parentElement.getBoundingClientRect()
-
-        // if (tooltipRect.top < bodyRect.top) {
-        //   setPosition('bottom')
-        // }
-        // if (tooltipRect.bottom > bodyRect.bottom) {
-        //   setPosition('top')
-        // }
-      }
-    }
-    React.useEffect(() => {
-      window.addEventListener('scroll', handleMouseMove)
-      return () => {
-        window.removeEventListener('scroll', handleMouseMove)
-      }
-    })
 
     const groupData = filterGroupedData(groupOptionData, filterText)
 
@@ -116,6 +94,29 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       document.addEventListener('click', handleClickOutside)
       return () => {
         document.removeEventListener('click', handleClickOutside)
+      }
+    }, [])
+
+    const handleMouseMove = () => {
+      if (toggleRef?.current) {
+        setPosition(toggleRef?.current.getBoundingClientRect())
+      }
+    }
+    React.useEffect(() => {
+      window.addEventListener('scroll', handleMouseMove)
+      return () => {
+        window.removeEventListener('scroll', handleMouseMove)
+      }
+    }, [])
+
+    React.useEffect(() => {
+      window.addEventListener('scroll', () => {
+        setIsOptionsOpen(false)
+      })
+      return () => {
+        window.removeEventListener('scroll', () => {
+          setIsOptionsOpen(false)
+        })
       }
     }, [])
 
