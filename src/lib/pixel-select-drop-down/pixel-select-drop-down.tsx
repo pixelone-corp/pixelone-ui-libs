@@ -282,7 +282,7 @@ const SearchPixelInput = styled.div`
   left: 0;
 `
 const Search = styled.input`
-  background-color: #ffffff; !important;
+  background-color: #ffffff !important;
   width: 100%;
   border: 1px solid #ced4da;
   padding: 0.375rem 0.75rem;

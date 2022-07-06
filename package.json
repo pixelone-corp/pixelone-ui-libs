@@ -26,7 +26,7 @@
     "deploy-storybook": "gh-pages -d docs",
     "build-storybook": "build-storybook -o docs -s ./stories/assets"
   },
-  "homepage":"https://muffrank.github.io/pixelone-ui-libs/",
+  "homepage": "https://muffrank.github.io/pixelone-ui-libs/",
   "peerDependencies": {
     "@datepicker-react/styled": "^2.8.4",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -111,6 +111,7 @@
     "react-dropzone": "^14.2.1",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.3.0",
+    "rechat-react-click-outside": "^1.1.1",
     "styled-components": "^5.3.3"
   }
 }
