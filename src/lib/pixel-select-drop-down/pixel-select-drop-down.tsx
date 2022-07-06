@@ -103,32 +103,23 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       }
     }
     React.useEffect(() => {
-      window.addEventListener('scroll', handleMouseMove)
+      document.addEventListener('scroll', handleMouseMove, true)
       return () => {
-        window.removeEventListener('scroll', handleMouseMove)
+        document.removeEventListener('scroll', handleMouseMove, true)
       }
     }, [])
-
+    const handleScroll = () => {
+      setIsOptionsOpen(false)
+    }
     React.useEffect(() => {
-      window.addEventListener('scroll', () => {
-        setIsOptionsOpen(false)
-      })
+      window.addEventListener('scroll', handleScroll, true)
       return () => {
-        window.removeEventListener('scroll', () => {
-          setIsOptionsOpen(false)
-        })
+        window.removeEventListener('scroll', handleScroll, true)
       }
     }, [])
 
     return (
-      <DropDown
-        ref={toggleRef}
-        {...rest}
-        className={className}
-        handleClickOutside={() => {
-          setIsOptionsOpen(false)
-        }}
-      >
+      <DropDown ref={toggleRef} {...rest} className={className}>
         <Toggler onClick={toggleOptions}>
           <OptionLabel>
             {getValue(
