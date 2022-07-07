@@ -66,7 +66,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       isgrouped = false,
       selectlabel = 'Please select',
       value = '',
-
       ...rest
     },
     ref
@@ -112,9 +111,9 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(false)
     }
     React.useEffect(() => {
-      window.addEventListener('scroll', handleScroll, true)
+      window.addEventListener('scroll', handleScroll)
       return () => {
-        window.removeEventListener('scroll', handleScroll, true)
+        window.removeEventListener('scroll', handleScroll)
       }
     }, [])
 
@@ -273,7 +272,7 @@ const SearchPixelInput = styled.div`
   left: 0;
 `
 const Search = styled.input`
-  background-color: #ffffff !important;
+  background-color: #ffffff; !important;
   width: 100%;
   border: 1px solid #ced4da;
   padding: 0.375rem 0.75rem;
