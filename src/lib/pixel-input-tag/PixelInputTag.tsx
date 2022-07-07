@@ -72,6 +72,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
   ) => {
     const [filterText, setFilterText] = React.useState('')
     const [localTags, setLocalTags] = React.useState(tags)
+
     const [isOptionsOpen, setIsOptionsOpen] = React.useState(false)
     const inputTagref = React.useRef(null)
     const optionsref = React.useRef(null)
@@ -79,6 +80,11 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
     const handleDelete = (value) => {
       setLocalTags(localTags.filter((t) => t.value !== value))
     }
+    React.useEffect(() => {
+      if (tags.length > 0) {
+        setLocalTags(tags)
+      }
+    }, [tags])
     const handleSearch = (key) => {
       if (key === 'Enter') {
         if (filterText)
@@ -172,7 +178,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
 
             <TagInput
               width={filterText.length > 8 ? '30%' : '20%'}
-              placeholder={placeholder}
+              placeholder={localTags.length > 0 ? '' : placeholder}
               className={invalid ? 'invalid' : ''}
               value={filterText}
               ref={inputTagref}
@@ -250,7 +256,7 @@ const Container = styled.div`
   border-radius: 4px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   border: 1px solid #ced4da;
-  background-color: #f7f7f7;
+  background-color: #fff;
   cursor: text;
   position: relative;
   width: 100%;
