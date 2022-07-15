@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
+import React from 'react'
+import styled from 'styled-components'
+import Highcharts from 'highcharts'
+import HighchartsReact from 'highcharts-react-official'
 
 export interface ChartProps {
-  className: string;
-  options: Highcharts.Options;
+  className: string
+  options: Highcharts.Options
 }
-const StyledContainer = styled.div``;
+const StyledContainer = styled.div``
 
 export const PixelChart = React.forwardRef<HTMLDivElement, ChartProps>(
   ({ className, options, ...rest }, ref) => {
@@ -15,7 +15,7 @@ export const PixelChart = React.forwardRef<HTMLDivElement, ChartProps>(
       <StyledContainer ref={ref} className={className}>
         <HighchartsReact {...rest} highcharts={Highcharts} options={options} />
       </StyledContainer>
-    );
+    )
   }
-);
-export default PixelChart;
+)
+export default PixelChart
