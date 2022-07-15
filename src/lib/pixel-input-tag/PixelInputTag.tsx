@@ -1,25 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 import { $primaryColor } from '../styleGuide'
+import { ActionIcon } from '../common-styled-component/section'
 import ClickOutside from 'rechat-react-click-outside'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { ActionIcon } from '../common-styled-component'
+
 export interface InputTagProps {
   className?: string
   tags?: options[]
   onTagUpdate?: any
   options?: options[]
   placeholder?: string
-
   allowCustomTags?: boolean
+  handleTagDelete?: any
+  handleTagAdd?: any
 }
 export interface options {
   label: string
   value: string
 }
-
 const StyledPixelInputTag = styled.div`
-  /* position: relative; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -62,9 +62,11 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
     {
       className,
       tags = [],
-      onTagUpdate = [],
+      onTagUpdate = () => {},
       options = [],
       placeholder,
+      handleTagDelete = {},
+      handleTagAdd = {},
       allowCustomTags = true,
       ...rest
     },
@@ -72,19 +74,17 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
   ) => {
     const [filterText, setFilterText] = React.useState('')
     const [localTags, setLocalTags] = React.useState(tags)
-
     const [isOptionsOpen, setIsOptionsOpen] = React.useState(false)
     const inputTagref = React.useRef(null)
     const optionsref = React.useRef(null)
     const [invalid, setInvalid] = React.useState(false)
     const handleDelete = (value) => {
       setLocalTags(localTags.filter((t) => t.value !== value))
+      handleTagDelete({
+        label: localTags.find((t) => t.value === value).label,
+        value: value
+      })
     }
-    React.useEffect(() => {
-      if (tags.length > 0) {
-        setLocalTags(tags)
-      }
-    }, [tags])
     const handleSearch = (key) => {
       if (key === 'Enter') {
         if (filterText)
@@ -93,8 +93,14 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
               return
             } else {
               const value = inputTagref.current.value
-              setLocalTags([...localTags, { label: value, value: value }])
+              const tag = {
+                label: value,
+                value: value
+              }
               setFilterText('')
+
+              setLocalTags([...localTags, tag])
+              handleTagAdd(tag)
             }
           } else {
             if (localTags.find((t) => t.label.toLowerCase() === filterText)) {
@@ -113,9 +119,15 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
       if (localTags.find((t) => t.value === option.value)) {
         return
       } else {
-        setLocalTags([...localTags, option])
+        const newTags = [...localTags, option]
+        setLocalTags(newTags)
         setIsOptionsOpen(false)
         setFilterText('')
+        onTagUpdate(newTags)
+        handleTagAdd({
+          label: option.label,
+          value: option.value
+        })
       }
 
       inputTagref.current.focus()
@@ -133,11 +145,11 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
       }
       return options
     }
+
     React.useEffect(() => {
-      if (onTagUpdate) {
-        onTagUpdate(localTags)
-      }
-    }, [localTags])
+      if (tags.length) setLocalTags(tags)
+    }, [tags])
+
     React.useEffect(() => {
       if (filterText.length > 0) {
         setIsOptionsOpen(true)
@@ -177,10 +189,11 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
             )}
 
             <TagInput
+              onBlur={() => {}}
               width={filterText.length > 8 ? '30%' : '20%'}
-              placeholder={localTags.length > 0 ? '' : placeholder}
+              placeholder={placeholder}
               className={invalid ? 'invalid' : ''}
-              value={filterText}
+              value={filterText || ''}
               ref={inputTagref}
               onKeyPress={(e) => e.key && handleSearch(e.key)}
               onChange={(e) => {
@@ -256,7 +269,7 @@ const Container = styled.div`
   border-radius: 4px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   border: 1px solid #ced4da;
-  background-color: #fff;
+  background-color: #f7f7f7;
   cursor: text;
   position: relative;
   width: 100%;
