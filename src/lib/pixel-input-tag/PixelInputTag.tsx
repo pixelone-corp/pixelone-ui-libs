@@ -15,6 +15,7 @@ export interface InputTagProps {
   handleTagDelete?: any
   handleTagAdd?: any
   clearAll?: any
+  noDataText?: string
 }
 export interface options {
   label: string
@@ -70,6 +71,8 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
       handleTagAdd = {},
       allowCustomTags = true,
       clearAll = {},
+      noDataText = 'No data found',
+
       ...rest
     },
     ref
@@ -244,7 +247,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
                   })}
                 </React.Fragment>
               ) : (
-                <Option>No data</Option>
+                <Option>{noDataText && noDataText}</Option>
               )}
             </DropDownList>
           )}
