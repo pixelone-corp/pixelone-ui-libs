@@ -14,6 +14,7 @@ export interface InputTagProps {
   allowCustomTags?: boolean
   handleTagDelete?: any
   handleTagAdd?: any
+  clearAll?: any
 }
 export interface options {
   label: string
@@ -68,6 +69,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
       handleTagDelete = {},
       handleTagAdd = {},
       allowCustomTags = true,
+      clearAll = {},
       ...rest
     },
     ref
@@ -80,10 +82,11 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
     const [invalid, setInvalid] = React.useState(false)
     const handleDelete = (value) => {
       setLocalTags(localTags.filter((t) => t.value !== value))
-      handleTagDelete({
-        label: localTags.find((t) => t.value === value).label,
-        value: value
-      })
+      handleTagDelete &&
+        handleTagDelete({
+          label: localTags.find((t) => t.value === value).label,
+          value: value
+        })
     }
     const handleSearch = (key) => {
       if (key === 'Enter') {
@@ -97,10 +100,9 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
                 label: value,
                 value: value
               }
-              setFilterText('')
-
               setLocalTags([...localTags, tag])
               handleTagAdd(tag)
+              setFilterText('')
             }
           } else {
             if (localTags.find((t) => t.label.toLowerCase() === filterText)) {
@@ -124,10 +126,11 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
         setIsOptionsOpen(false)
         setFilterText('')
         onTagUpdate(newTags)
-        handleTagAdd({
-          label: option.label,
-          value: option.value
-        })
+        handleTagAdd &&
+          handleTagAdd({
+            label: option.label,
+            value: option.value
+          })
       }
 
       inputTagref.current.focus()
@@ -148,6 +151,9 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
 
     React.useEffect(() => {
       if (tags.length) setLocalTags(tags)
+      return () => {
+        setLocalTags([])
+      }
     }, [tags])
 
     React.useEffect(() => {
@@ -246,6 +252,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
             <ClearAll
               onClick={() => {
                 setLocalTags([])
+                clearAll && clearAll()
               }}
             >
               {' '}
