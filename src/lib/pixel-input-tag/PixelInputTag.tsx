@@ -16,6 +16,7 @@ export interface InputTagProps {
   handleTagAdd?: any
   clearAll?: any
   noDataText?: string
+  isAllClearable?: boolean
 }
 export interface options {
   label: string
@@ -72,6 +73,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
       allowCustomTags = true,
       clearAll = {},
       noDataText = 'No data found',
+      isAllClearable = true,
 
       ...rest
     },
@@ -226,7 +228,6 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
             <DropDownList>
               {filterData(options, filterText).length > 0 ? (
                 <React.Fragment>
-                  {' '}
                   {filterData(options, filterText).map((option, i) => {
                     return (
                       <Option
@@ -251,16 +252,19 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
               )}
             </DropDownList>
           )}
-          {localTags.length > 0 && (
-            <ClearAll
-              onClick={() => {
-                setLocalTags([])
-                clearAll && clearAll()
-              }}
-            >
-              {' '}
-              <ActionIcon size='28px' icon={faXmark} />
-            </ClearAll>
+          {isAllClearable && (
+            <>
+              {localTags.length > 0 && (
+                <ClearAll
+                  onClick={() => {
+                    setLocalTags([])
+                    clearAll && clearAll()
+                  }}
+                >
+                  <ActionIcon size='28px' icon={faXmark} />
+                </ClearAll>
+              )}
+            </>
           )}
         </Container>
       </ClickOutside>
