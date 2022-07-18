@@ -253,7 +253,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
             </DropDownList>
           )}
           {isAllClearable && (
-            <>
+            <React.Fragment>
               {localTags.length > 0 && (
                 <ClearAll
                   onClick={() => {
@@ -264,7 +264,7 @@ export const PixelInputTag = React.forwardRef<HTMLDivElement, InputTagProps>(
                   <ActionIcon size='28px' icon={faXmark} />
                 </ClearAll>
               )}
-            </>
+            </React.Fragment>
           )}
         </Container>
       </ClickOutside>
