@@ -7,7 +7,7 @@ const AreaChartOptions = {
       'This chart shows the historical development of the number of applications in the last year.'
   },
   title: {
-    text: 'Pixelone Chart '
+    text: 'Pixel Chart '
   },
   subtitle: {
     text: 'Source: PixelOne Library '
