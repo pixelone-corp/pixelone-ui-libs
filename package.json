@@ -26,7 +26,7 @@
     "deploy-storybook": "gh-pages -d docs",
     "build-storybook": "build-storybook -o docs -s ./stories/assets"
   },
-  "homepage": "https://muffrank.github.io/pixelone-ui-libs/",
+  "homepage": "https://pixelone-corp.github.io/pixelone-ui-libs/",
   "peerDependencies": {
     "@datepicker-react/styled": "^2.8.4",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -56,6 +56,7 @@
     "@storybook/addon-links": "^6.5.9",
     "@storybook/builder-webpack4": "^6.5.9",
     "@storybook/manager-webpack4": "^6.5.9",
+    "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^6.5.9",
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/jest-dom": "^4.2.4",
@@ -70,6 +71,7 @@
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.2.5",
     "cross-env": "^7.0.2",
+    "css-loader": "5.2.7",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-standard": "^14.1.0",
@@ -86,7 +88,9 @@
     "prettier": "^2.0.4",
     "react": "18.1.0",
     "react-dom": "^18.0.5",
-    "sass": "^1.52.2",
+    "sass": "^1.53.0",
+    "sass-loader": "10.1.1",
+    "style-loader": "2.0.0",
     "typescript": "^3.7.5"
   },
   "files": [

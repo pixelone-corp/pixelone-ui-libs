@@ -5,7 +5,7 @@ const BarChartOptions = {
     type: 'bar'
   },
   title: {
-    text: 'Pixelone Chart'
+    text: 'Pixel Chart'
   },
   subtitle: {
     text: 'Source : PixelOne Library'
