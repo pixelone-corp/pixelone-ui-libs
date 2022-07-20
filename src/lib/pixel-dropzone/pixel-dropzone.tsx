@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { useDropzone } from "react-dropzone";
-import { PixelButton } from "../pixel-button/pixel-button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import React from 'react'
+import styled from 'styled-components'
+import { useDropzone } from 'react-dropzone'
+import { PixelButton } from '../pixel-button/pixel-button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClose } from '@fortawesome/free-solid-svg-icons'
 export interface DropzoneProps {
-  className: string;
-  onChange: any;
+  className: string
+  onChange: any
 }
 
 const Container = styled.div`
@@ -26,51 +26,51 @@ const Container = styled.div`
   outline: none !important;
   transition: border 0.24s ease-in-out;
   cursor: pointer;
-`;
-const StyledPixelDropZone = styled.div``;
+`
+const StyledPixelDropZone = styled.div``
 
 export const PixelDropZone = React.forwardRef<HTMLDivElement, DropzoneProps>(
   ({ className, onChange, ...rest }, ref) => {
-    const [files, setFiles] = React.useState([]);
+    const [files, setFiles] = React.useState([])
     const onDrop = (acceptesFiles) => {
       setFiles(
         acceptesFiles.map((file) =>
           Object.assign(file, {
-            preview: URL.createObjectURL(file),
+            preview: URL.createObjectURL(file)
           })
         )
-      );
-    };
+      )
+    }
 
     const { acceptedFiles, open, getRootProps, getInputProps, isDragActive } =
-      useDropzone({ onDrop });
+      useDropzone({ onDrop })
 
     React.useEffect(() => {
-      onChange(files);
-    }, [files]);
+      onChange(files)
+    }, [files])
 
     React.useEffect(() => {
       if (files.length > 0) {
         setFiles(
           [...files, ...acceptedFiles].map((file) => {
-            file["preview"] = URL.createObjectURL(file);
-            return file;
+            file['preview'] = URL.createObjectURL(file)
+            return file
           })
-        );
+        )
       } else {
         setFiles(
           acceptedFiles.map((file) => {
-            file["preview"] = URL.createObjectURL(file);
-            return file;
+            file['preview'] = URL.createObjectURL(file)
+            return file
           })
-        );
+        )
       }
       return () => {
         files.map((file) => {
-          URL.revokeObjectURL(file.preview);
-        });
-      };
-    }, [acceptedFiles]);
+          URL.revokeObjectURL(file.preview)
+        })
+      }
+    }, [acceptedFiles])
     return (
       <StyledPixelDropZone>
         <PictureArea>
@@ -78,10 +78,10 @@ export const PixelDropZone = React.forwardRef<HTMLDivElement, DropzoneProps>(
             <ImageContainer>
               <CloseIconContainer
                 onClick={() => {
-                  setFiles(files.filter((f) => f.name !== file.name));
+                  setFiles(files.filter((f) => f.name !== file.name))
                 }}
               >
-                {" "}
+                {' '}
                 <CloseIcon icon={faClose} />
               </CloseIconContainer>
 
@@ -96,16 +96,16 @@ export const PixelDropZone = React.forwardRef<HTMLDivElement, DropzoneProps>(
           <PixelButton>Select Files</PixelButton>
         </Container>
       </StyledPixelDropZone>
-    );
+    )
   }
-);
+)
 
 const DragDrop = styled.div`
   font-size: 16px;
-`;
+`
 const OR = styled.div`
   font-size: 12px;
-`;
+`
 
 const CloseIconContainer = styled.div`
   align-items: center;
@@ -121,7 +121,7 @@ const CloseIconContainer = styled.div`
   width: 22px;
   font-size: 15px;
   display: none;
-`;
+`
 const ImageContainer = styled.div`
   width: 100%;
   box-shadow: 0 0 5px #ccc;
@@ -142,18 +142,18 @@ const ImageContainer = styled.div`
       display: flex;
     }
   }
-`;
+`
 const Image = styled.img`
   width: 100%;
   height: 100%;
-`;
+`
 
 const CloseIcon = styled(FontAwesomeIcon)`
   height: 20px;
   width: 12px;
-`;
+`
 const PictureArea = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-`;
-export default PixelDropZone;
+`
+export default PixelDropZone

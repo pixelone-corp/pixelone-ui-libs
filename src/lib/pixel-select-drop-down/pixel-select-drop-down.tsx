@@ -194,8 +194,14 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                         disabled={option.disabled}
                         onClick={() => {
                           rest.onChange &&
-                            rest.onChange({ target: { value: option.value } })
-                          setIsOptionsOpen(false)
+                            rest.onChange({
+                              target: {
+                                value: option.value,
+                                options: [{ text: option.label }],
+                                selectedIndex: 0
+                              }
+                            }),
+                            setIsOptionsOpen(false)
                         }}
                       >
                         {option.label}
