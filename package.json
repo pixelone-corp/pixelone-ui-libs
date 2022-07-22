@@ -4,7 +4,7 @@
   "description": "Common UI components for pixelone.app, Based on React Bootstrap",
   "author": "muffrank",
   "license": "MIT",
-  "repository": "muffrank/pixelone-ui-libs",
+  "repository": "https://github.com/pixelone-corp/pixelone-ui-libs",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
