@@ -56,6 +56,7 @@ const filterGroupedData = (options, filterText) => {
   }
   return options
 }
+
 export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
   (
     {
@@ -77,7 +78,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
       setIsOptionsOpen(!isOptionsOpen)
       handleMouseMove()
     }
-    console.log(rest)
 
     const toggleRef = React.useRef(null)
 
@@ -95,10 +95,19 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         document.removeEventListener('click', handleClickOutside)
       }
     }, [])
-
     const handleMouseMove = () => {
       if (toggleRef?.current) {
         setPosition(toggleRef?.current.getBoundingClientRect())
+        // Open DropDown Upward if no space available
+        if (
+          position.bottom + toggleRef?.current?.offsetHeight >
+          window.innerHeight
+        ) {
+          setPosition({
+            ...position,
+            top: position.top - toggleRef?.current?.offsetHeight
+          })
+        }
       }
     }
     React.useEffect(() => {
@@ -107,6 +116,7 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
         document.removeEventListener('scroll', handleMouseMove, true)
       }
     }, [])
+
     const handleScroll = () => {
       setIsOptionsOpen(false)
     }
