@@ -1,7 +1,7 @@
 name: Build and Deploy
-on: 
+on:
   push:
-    paths: ["stories/**", "src/lib/**"] # Trigger the action only when files change in the folders defined here
+    paths: ['src/**', 'src/lib/**'] # Trigger the action only when files change in the folders defined here
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
