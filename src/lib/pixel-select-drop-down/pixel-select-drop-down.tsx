@@ -98,16 +98,6 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
     const handleMouseMove = () => {
       if (toggleRef?.current) {
         setPosition(toggleRef?.current.getBoundingClientRect())
-        // Open DropDown Upward if no space available
-        if (
-          position.bottom + toggleRef?.current?.offsetHeight >
-          window.innerHeight
-        ) {
-          setPosition({
-            ...position,
-            top: position.top - toggleRef?.current?.offsetHeight
-          })
-        }
       }
     }
     React.useEffect(() => {
@@ -163,9 +153,13 @@ export const PixelDropDown = React.forwardRef<HTMLDivElement, DropDownProps>(
                               onClick={() => {
                                 rest.onChange &&
                                   rest.onChange({
-                                    target: { value: option.value }
-                                  })
-                                setIsOptionsOpen(false)
+                                    target: {
+                                      value: option.value,
+                                      options: [{ text: option.label }],
+                                      selectedIndex: 0
+                                    }
+                                  }),
+                                  setIsOptionsOpen(false)
                               }}
                               key={option.value}
                               value={option.value}
